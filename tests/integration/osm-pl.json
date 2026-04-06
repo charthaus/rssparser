@@ -265,6 +265,11 @@
   "feed": {
     "generator": "https://wordpress.org/?v=6.0.1",
     "id": null,
+    "image": {
+      "link": "https://openstreetmap.org.pl/",
+      "title": "OpenStreetMap Polska",
+      "url": "https://openstreetmap.org.pl/app/uploads/2021/05/cropped-OpenStreetMap_Poland_logo_512px_opt-32x32.png"
+    },
     "language": null,
     "link": "https://openstreetmap.org.pl/",
     "links": [],

@@ -1054,6 +1054,11 @@
   "feed": {
     "generator": "https://wordpress.org/?v=6.6.2",
     "id": null,
+    "image": {
+      "link": "https://foolcontrol.org",
+      "title": "FoolControl: Phear the penguin",
+      "url": "https://storage.googleapis.com/foolcontrol-media/2024/09/ee9804c9-cropped-e4e3292a-foolcontrol-favicon-32x32.png"
+    },
     "language": null,
     "link": "https://foolcontrol.org",
     "links": [],

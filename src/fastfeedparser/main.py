@@ -1053,6 +1053,35 @@ def _parse_feed_info(
         if managing_editor:
             feed["author"] = managing_editor
 
+    # Parse feed-level image/icon/logo
+    if feed_type == "atom":
+        icon_el = channel.find(f"{{{atom_ns}}}icon")
+        if icon_el is not None and icon_el.text:
+            feed["icon"] = icon_el.text.strip()
+        logo_el = channel.find(f"{{{atom_ns}}}logo")
+        if logo_el is not None and logo_el.text:
+            feed["logo"] = logo_el.text.strip()
+    elif feed_type == "rss":
+        image_el = channel.find("image")
+        if image_el is not None:
+            image: dict[str, Optional[str]] = {}
+            for sub_tag in ("url", "title", "link"):
+                sub_el = image_el.find(sub_tag)
+                if sub_el is not None and sub_el.text:
+                    image[sub_tag] = sub_el.text.strip()
+            if image.get("url"):
+                feed["image"] = image
+    elif feed_type == "rdf":
+        rdf_image_el = channel.find("{http://purl.org/rss/1.0/}image")
+        if rdf_image_el is not None:
+            image = {}
+            for sub_tag in ("title", "link", "url"):
+                sub_el = rdf_image_el.find(f"{{http://purl.org/rss/1.0/}}{sub_tag}")
+                if sub_el is not None and sub_el.text:
+                    image[sub_tag] = sub_el.text.strip()
+            if image.get("url"):
+                feed["image"] = image
+
     # Parse feed-level tags/categories
     if include_tags:
         tags = _parse_tags(channel, feed_type, atom_ns)

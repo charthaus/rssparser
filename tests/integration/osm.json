@@ -902,6 +902,7 @@
     }
   ],
   "feed": {
+    "icon": "https://www.openstreetmap.org/assets/favicon-042c50e8224a5c999369ec96f5367cb5b14db4671f1485caeec1277481073093.ico",
     "id": "https://www.openstreetmap.org/history/feed?bbox=18.44776153564453%2C53.04090341037645%2C18.717269897460938%2C53.13080905065379",
     "language": "en",
     "link": "https://www.openstreetmap.org/history?bbox=18.44776153564453%2C53.04090341037645%2C18.717269897460938%2C53.13080905065379",
@@ -918,6 +919,7 @@
         "type": "text/html"
       }
     ],
+    "logo": "https://www.openstreetmap.org/assets/mag_map-rss2.0-2973595662b8a92522b315b6c69bf5ee9bec75e07d702c5932f114c44a6251ea.png",
     "title": "Changesets",
     "title_detail": {
       "base": null,
