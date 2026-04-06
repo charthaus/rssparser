@@ -91,6 +91,38 @@ Feedparser: 11 entries in 0.339s
 Speedup: 50.1x
 ```
 
+And publish a full report looking like this
+```
+Summary:
+--------------------------------------------------
+Total wall-clock time: 38.70s
+Successfully tested 200/200 feeds
+
+FastFeedParser:
+  Total entries: 6600
+  Total parsing time: 0.46s
+  Average per feed: 0.002s
+  Feeds/sec: 439.0
+
+Feedparser:
+  Total entries: 6555
+  Total parsing time: 12.31s
+  Average per feed: 0.062s
+  Feeds/sec: 16.2
+
+Speedup: FastFeedParser is 27.0x faster
+
+OUTLIERS: Entry Count Mismatches (2 feeds)
+--------------------------------------------------
+  https://dylanharris.org/feed-me.rss
+    FastFeedParser: 35 entries
+    Feedparser: 0 entries
+    Difference: +35
+  https://humanwhocodes.com/feeds/all.json
+    FastFeedParser: 10 entries
+    Feedparser: 0 entries
+    Difference: +10
+```
 
 ## Key Features
 
