@@ -635,6 +635,7 @@ def _raise_for_non_feed_root(
 
 
 _RE_META_REFRESH_URL = re.compile(r'url\s*=\s*["\']?\s*([^"\'>\s]+)', re.IGNORECASE)
+_MAX_META_REDIRECTS = 3
 
 
 def _extract_meta_refresh_url(content: str | bytes, base_url: str) -> str | None:
@@ -866,31 +867,32 @@ def parse(
     else:
         content = source
 
-    try:
-        return _parse_content(
-            content,
-            include_content=include_content,
-            include_tags=include_tags,
-            include_media=include_media,
-            include_enclosures=include_enclosures,
-        )
-    except ValueError as e:
-        if not is_url:
-            raise
-        assert isinstance(source, str)
-        err_msg = str(e)
-        if "HTML" not in err_msg and "not a valid RSS/Atom feed" not in err_msg:
-            raise
-        redirect_url = _extract_meta_refresh_url(content, source)
-        if redirect_url is None:
-            raise
-        return parse(
-            redirect_url,
-            include_content=include_content,
-            include_tags=include_tags,
-            include_media=include_media,
-            include_enclosures=include_enclosures,
-        )
+    parse_kwargs = dict(
+        include_content=include_content,
+        include_tags=include_tags,
+        include_media=include_media,
+        include_enclosures=include_enclosures,
+    )
+
+    redirects_left = _MAX_META_REDIRECTS
+    while True:
+        try:
+            return _parse_content(content, **parse_kwargs)
+        except ValueError as e:
+            if not is_url:
+                raise
+            assert isinstance(source, str)
+            err_msg = str(e)
+            if "HTML" not in err_msg and "not a valid RSS/Atom feed" not in err_msg:
+                raise
+            if redirects_left <= 0:
+                raise ValueError("too many meta-refresh redirects") from e
+            redirect_url = _extract_meta_refresh_url(content, source)
+            if redirect_url is None:
+                raise
+            content = _fetch_url_content(redirect_url)
+            source = redirect_url
+            redirects_left -= 1
 
 
 def _parse_feed_info(
