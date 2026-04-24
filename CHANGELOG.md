@@ -21,8 +21,6 @@ First release of the Rust-backed parser. Successor to `fastfeedparser` 0.6.x.
 ### New capabilities
 
 - `rssparser.parse_many(blobs)` — parallel batch parse via Rayon.
-- `rssparser.parse_to_json(data)` — direct bytes emit, skips Python object construction.
-- `rssparser.parse_many_to_json(blobs)` — batched bytes emit.
 - Format auto-dispatch across RSS 2.0 / Atom 1.0 / RDF / JSON Feed based on first byte + root tag.
 - Encoding auto-detection via `encoding_rs` (BOM, XML declaration, UTF-8 fallback). Correctly handles feeds that mis-declare their encoding.
 - Pre-cleanup of malformed XML ported from `fastfeedparser._fix_malformed_xml_bytes`: double `<?xml?xml>` declaration, double `??>`, unquoted attributes, `utf-16`-declared-but-actually-`utf-8`.

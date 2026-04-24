@@ -33,15 +33,13 @@ payload = feed.to_dict()
 ```python
 rssparser.parse(data: bytes) -> rssparser.Feed
 rssparser.parse_many(blobs: list[bytes]) -> list[rssparser.Feed]
-rssparser.parse_to_json(data: bytes) -> bytes
-rssparser.parse_many_to_json(blobs: list[bytes]) -> list[bytes]
 rssparser.FeedParseError  # alias of ValueError
 ```
 
 - `parse(data)` — zero-copy view into the Python bytes object; parses while holding the GIL. Blazing fast single-call.
 - `parse_many(blobs)` — releases the GIL, parses the batch in parallel via Rayon, returns the list in input order. Use this when you have many feeds.
-- `parse_to_json(data)` — parses and emits JSON bytes directly, skipping Python object construction. Ideal for pipelines that pipe straight to JSONB / Kafka / disk.
-- `parse_many_to_json(blobs)` — batched JSON emit.
+
+For JSON output (pipe to JSONB / Kafka / disk), call `feed.to_dict()` and serialize with `orjson.dumps()` — faster than any builtin bytes-emit path we measured.
 
 ### Feed / Entry shape
 

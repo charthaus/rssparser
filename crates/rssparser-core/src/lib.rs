@@ -1,7 +1,6 @@
 mod atom;
 mod date;
 mod error;
-mod json_emit;
 mod json_feed;
 mod model;
 mod preprocess;
@@ -10,7 +9,6 @@ mod rss;
 mod xml_util;
 
 pub use error::ParseError;
-pub use json_emit::feed_to_json_bytes;
 pub use model::*;
 
 use quick_xml::events::Event;

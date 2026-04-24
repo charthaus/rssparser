@@ -275,49 +275,11 @@ fn parse_many<'py>(
     Ok(out)
 }
 
-#[pyfunction]
-fn parse_to_json<'py>(py: Python<'py>, data: &[u8]) -> PyResult<Bound<'py, PyBytes>> {
-    let feed = core::parse(data).map_err(|e| PyValueError::new_err(e.to_string()))?;
-    let bytes = core::feed_to_json_bytes(&feed);
-    Ok(PyBytes::new(py, &bytes))
-}
-
-#[pyfunction]
-fn parse_many_to_json<'py>(
-    py: Python<'py>,
-    blobs: Vec<Bound<'py, PyBytes>>,
-) -> PyResult<Bound<'py, PyList>> {
-    use rayon::prelude::*;
-    let views: Vec<&[u8]> = blobs.iter().map(|b| b.as_bytes()).collect();
-
-    let results: Vec<Result<Vec<u8>, String>> = py.allow_threads(|| {
-        views
-            .into_par_iter()
-            .map(|data| {
-                core::parse(data)
-                    .map(|f| core::feed_to_json_bytes(&f))
-                    .map_err(|e| e.to_string())
-            })
-            .collect()
-    });
-
-    let out = PyList::empty(py);
-    for r in results {
-        match r {
-            Ok(json) => out.append(PyBytes::new(py, &json))?,
-            Err(msg) => return Err(PyValueError::new_err(msg)),
-        }
-    }
-    Ok(out)
-}
-
 #[pymodule]
 fn _rssparser(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<PyFeed>()?;
     m.add_class::<PyEntry>()?;
     m.add_function(wrap_pyfunction!(parse, m)?)?;
     m.add_function(wrap_pyfunction!(parse_many, m)?)?;
-    m.add_function(wrap_pyfunction!(parse_to_json, m)?)?;
-    m.add_function(wrap_pyfunction!(parse_many_to_json, m)?)?;
     Ok(())
 }
