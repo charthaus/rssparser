@@ -4,7 +4,7 @@ import os
 import statistics
 import time
 
-import fastfeedparser
+import rssparser as fastfeedparser  # benchmark pinned against old variable name
 import feedparser
 import httpx
 

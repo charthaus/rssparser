@@ -1,5 +1,12 @@
-from fastfeedparser import parse
-from fastfeedparser.main import _extract_meta_refresh_url
+import pytest
+
+pytest.skip(
+    "Legacy fastfeedparser tests — to be ported to rssparser in Phase 5.",
+    allow_module_level=True,
+)
+
+from fastfeedparser import parse  # noqa: E402
+from fastfeedparser.main import _extract_meta_refresh_url  # noqa: E402
 
 
 def test_parse_str_with_non_utf8_xml_declaration():

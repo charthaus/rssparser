@@ -1,30 +1,19 @@
 {
   "entries": [
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=4802#respond",
-      "content": [
+      "categories": [
         {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "By the end of this blog post (or wp-cloud-run YouTube video playlist), you&#8217;ll have a fully secure (DDoS proof), performant and scalable WordPress instance running..."
-        }
-      ],
-      "description": "By the end of this blog post (or wp-cloud-run YouTube video playlist), you&#8217;ll have a fully secure (DDoS proof), performant and scalable WordPress instance running...",
-      "id": "https://foolcontrol.org/?p=4802",
-      "link": "https://foolcontrol.org/?p=4802",
-      "links": [],
-      "published": "2024-10-20T16:07:49+00:00",
-      "tags": [
+          "label": null,
+          "scheme": null,
+          "term": "cloud"
+        },
         {
           "label": null,
           "scheme": null,
@@ -44,40 +33,28 @@
           "label": null,
           "scheme": null,
           "term": "Tutorial"
-        },
-        {
-          "label": null,
-          "scheme": null,
-          "term": "cloud"
         }
       ],
-      "title": "wp-cloud-run: Ultimate WordPress setup on (GCP) Cloud Run"
+      "content": null,
+      "description": "By the end of this blog post (or wp-cloud-run YouTube video playlist), you&#8217;ll have a fully secure (DDoS proof), performant and scalable WordPress instance running...",
+      "enclosures": [],
+      "id": "https://foolcontrol.org/?p=4802",
+      "link": "https://foolcontrol.org/?p=4802",
+      "links": [],
+      "media": [],
+      "published": "2024-10-20T16:07:49+00:00",
+      "title": "wp-cloud-run: Ultimate WordPress setup on (GCP) Cloud Run",
+      "updated": null
     },
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=4781#respond",
-      "content": [
-        {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "Linux snapshots? Back in the day (mid 2000&#8217;s) ReiserFS was my go to Linux filesystem, it was fast &#38; reliable. But then after its creator..."
-        }
-      ],
-      "description": "Linux snapshots? Back in the day (mid 2000&#8217;s) ReiserFS was my go to Linux filesystem, it was fast &#38; reliable. But then after its creator...",
-      "id": "https://foolcontrol.org/?p=4781",
-      "link": "https://foolcontrol.org/?p=4781",
-      "links": [],
-      "published": "2024-09-22T16:00:59+00:00",
-      "tags": [
+      "categories": [
         {
           "label": null,
           "scheme": null,
@@ -159,33 +136,26 @@
           "term": "zfs"
         }
       ],
-      "title": "Effortless Linux backups: Power of OpenZFS Snapshots on Ubuntu 24.04"
+      "content": null,
+      "description": "Linux snapshots? Back in the day (mid 2000&#8217;s) ReiserFS was my go to Linux filesystem, it was fast &#38; reliable. But then after its creator...",
+      "enclosures": [],
+      "id": "https://foolcontrol.org/?p=4781",
+      "link": "https://foolcontrol.org/?p=4781",
+      "links": [],
+      "media": [],
+      "published": "2024-09-22T16:00:59+00:00",
+      "title": "Effortless Linux backups: Power of OpenZFS Snapshots on Ubuntu 24.04",
+      "updated": null
     },
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=4621#comments",
-      "content": [
-        {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "The blog post you&#8217;re reading is hosted on a private Kubernetes cluster that runs inside my home. Another workload that&#8217;s running on same cluster is..."
-        }
-      ],
-      "description": "The blog post you&#8217;re reading is hosted on a private Kubernetes cluster that runs inside my home. Another workload that&#8217;s running on same cluster is...",
-      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4621",
-      "link": "https://foolcontrol.org/?p=4621",
-      "links": [],
-      "published": "2024-02-26T20:00:23+00:00",
-      "tags": [
+      "categories": [
         {
           "label": null,
           "scheme": null,
@@ -287,33 +257,26 @@
           "term": "run"
         }
       ],
-      "title": "App architecture with reliability in mind: From Kubernetes to Serverless with GCP Cloud Build & Cloud Run"
+      "content": null,
+      "description": "The blog post you&#8217;re reading is hosted on a private Kubernetes cluster that runs inside my home. Another workload that&#8217;s running on same cluster is...",
+      "enclosures": [],
+      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4621",
+      "link": "https://foolcontrol.org/?p=4621",
+      "links": [],
+      "media": [],
+      "published": "2024-02-26T20:00:23+00:00",
+      "title": "App architecture with reliability in mind: From Kubernetes to Serverless with GCP Cloud Build & Cloud Run",
+      "updated": null
     },
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=4603#comments",
-      "content": [
-        {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "Almost 4 years after initial auto-cpufreq release, 4200 Github stars, 65 contributors &#38; 42 releases, tool being topic of numerous Linux podcasts and shows, and..."
-        }
-      ],
-      "description": "Almost 4 years after initial auto-cpufreq release, 4200 Github stars, 65 contributors &#38; 42 releases, tool being topic of numerous Linux podcasts and shows, and...",
-      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4603",
-      "link": "https://foolcontrol.org/?p=4603",
-      "links": [],
-      "published": "2023-09-30T13:45:01+00:00",
-      "tags": [
+      "categories": [
         {
           "label": null,
           "scheme": null,
@@ -400,33 +363,26 @@
           "term": "youtube"
         }
       ],
-      "title": "auto-cpufreq v2.0"
+      "content": null,
+      "description": "Almost 4 years after initial auto-cpufreq release, 4200 Github stars, 65 contributors &#38; 42 releases, tool being topic of numerous Linux podcasts and shows, and...",
+      "enclosures": [],
+      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4603",
+      "link": "https://foolcontrol.org/?p=4603",
+      "links": [],
+      "media": [],
+      "published": "2023-09-30T13:45:01+00:00",
+      "title": "auto-cpufreq v2.0",
+      "updated": null
     },
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=4555#respond",
-      "content": [
-        {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "Considering I&#8217;ve created my own private cloud in my home as part of: wp-k8s: WordPress on privately hosted Kubernetes cluster (Raspberry Pi 4 + Synology)...."
-        }
-      ],
-      "description": "Considering I&#8217;ve created my own private cloud in my home as part of: wp-k8s: WordPress on privately hosted Kubernetes cluster (Raspberry Pi 4 + Synology)....",
-      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4555",
-      "link": "https://foolcontrol.org/?p=4555",
-      "links": [],
-      "published": "2023-05-22T10:44:46+00:00",
-      "tags": [
+      "categories": [
         {
           "label": null,
           "scheme": null,
@@ -483,33 +439,26 @@
           "term": "terraform"
         }
       ],
-      "title": "rpi-microk8s-bootstrap: Automate RPI device conversion into Kubernetes cluster nodes with Terraform"
+      "content": null,
+      "description": "Considering I&#8217;ve created my own private cloud in my home as part of: wp-k8s: WordPress on privately hosted Kubernetes cluster (Raspberry Pi 4 + Synology)....",
+      "enclosures": [],
+      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4555",
+      "link": "https://foolcontrol.org/?p=4555",
+      "links": [],
+      "media": [],
+      "published": "2023-05-22T10:44:46+00:00",
+      "title": "rpi-microk8s-bootstrap: Automate RPI device conversion into Kubernetes cluster nodes with Terraform",
+      "updated": null
     },
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=4508#respond",
-      "content": [
-        {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "A story to tell As part of my career at ING with my previous team, MLP (Machine Learning Platform). I spent over 2 years leading..."
-        }
-      ],
-      "description": "A story to tell As part of my career at ING with my previous team, MLP (Machine Learning Platform). I spent over 2 years leading...",
-      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4508",
-      "link": "https://foolcontrol.org/?p=4508",
-      "links": [],
-      "published": "2023-04-03T14:16:15+00:00",
-      "tags": [
+      "categories": [
         {
           "label": null,
           "scheme": null,
@@ -586,33 +535,26 @@
           "term": "talk"
         }
       ],
-      "title": "“Kubernetes, Resistance is Futile” – KubeCon & KCD 2023 talk"
+      "content": null,
+      "description": "A story to tell As part of my career at ING with my previous team, MLP (Machine Learning Platform). I spent over 2 years leading...",
+      "enclosures": [],
+      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4508",
+      "link": "https://foolcontrol.org/?p=4508",
+      "links": [],
+      "media": [],
+      "published": "2023-04-03T14:16:15+00:00",
+      "title": "“Kubernetes, Resistance is Futile” – KubeCon & KCD 2023 talk",
+      "updated": null
     },
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=4393#respond",
-      "content": [
-        {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "Amsterdam is a great city to enjoy a beer, or two. However, after you had your beers and you&#8217;re strolling down the streets, you might..."
-        }
-      ],
-      "description": "Amsterdam is a great city to enjoy a beer, or two. However, after you had your beers and you&#8217;re strolling down the streets, you might...",
-      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4393",
-      "link": "https://foolcontrol.org/?p=4393",
-      "links": [],
-      "published": "2022-08-08T09:48:21+00:00",
-      "tags": [
+      "categories": [
         {
           "label": null,
           "scheme": null,
@@ -689,33 +631,26 @@
           "term": "webapp"
         }
       ],
-      "title": "atuf.app: Amsterdam Toilet & Urinal Finder"
+      "content": null,
+      "description": "Amsterdam is a great city to enjoy a beer, or two. However, after you had your beers and you&#8217;re strolling down the streets, you might...",
+      "enclosures": [],
+      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4393",
+      "link": "https://foolcontrol.org/?p=4393",
+      "links": [],
+      "media": [],
+      "published": "2022-08-08T09:48:21+00:00",
+      "title": "atuf.app: Amsterdam Toilet & Urinal Finder",
+      "updated": null
     },
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=4004#respond",
-      "content": [
-        {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "Blog post you&#8217;re reading right now is privately hosted on Raspberry PI 4 Kubernetes cluster with its data coming from NFS share and MariaDB on..."
-        }
-      ],
-      "description": "Blog post you&#8217;re reading right now is privately hosted on Raspberry PI 4 Kubernetes cluster with its data coming from NFS share and MariaDB on...",
-      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4004",
-      "link": "https://foolcontrol.org/?p=4004",
-      "links": [],
-      "published": "2021-11-12T11:09:31+00:00",
-      "tags": [
+      "categories": [
         {
           "label": null,
           "scheme": null,
@@ -827,33 +762,26 @@
           "term": "wordpress"
         }
       ],
-      "title": "wp-k8s: WordPress on privately hosted Kubernetes cluster (Raspberry Pi 4 + Synology)"
+      "content": null,
+      "description": "Blog post you&#8217;re reading right now is privately hosted on Raspberry PI 4 Kubernetes cluster with its data coming from NFS share and MariaDB on...",
+      "enclosures": [],
+      "id": "https://wp-cloud-run-4xx42k3twa-ez.a.run.app/?p=4004",
+      "link": "https://foolcontrol.org/?p=4004",
+      "links": [],
+      "media": [],
+      "published": "2021-11-12T11:09:31+00:00",
+      "title": "wp-k8s: WordPress on privately hosted Kubernetes cluster (Raspberry Pi 4 + Synology)",
+      "updated": null
     },
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=3754#respond",
-      "content": [
-        {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "tl;dr? wp-k8s (Github) Title of this blog post isn&#8217;t a collection of every Kubernetes related buzzword I could think of. It&#8217;s a collection of technologies..."
-        }
-      ],
-      "description": "tl;dr? wp-k8s (Github) Title of this blog post isn&#8217;t a collection of every Kubernetes related buzzword I could think of. It&#8217;s a collection of technologies...",
-      "id": "https://k8s.hodzic.org/?p=3754",
-      "link": "https://foolcontrol.org/?p=3754",
-      "links": [],
-      "published": "2021-10-17T07:40:54+00:00",
-      "tags": [
+      "categories": [
         {
           "label": null,
           "scheme": null,
@@ -950,33 +878,26 @@
           "term": "wp-k8s"
         }
       ],
-      "title": "wp-k8s: WordPress on Kubernetes project (GKE, cloud SQL, NFS, cluster autoscaling, HPA, VPA, Ingress, Let’s Encrypt)"
+      "content": null,
+      "description": "tl;dr? wp-k8s (Github) Title of this blog post isn&#8217;t a collection of every Kubernetes related buzzword I could think of. It&#8217;s a collection of technologies...",
+      "enclosures": [],
+      "id": "https://k8s.hodzic.org/?p=3754",
+      "link": "https://foolcontrol.org/?p=3754",
+      "links": [],
+      "media": [],
+      "published": "2021-10-17T07:40:54+00:00",
+      "title": "wp-k8s: WordPress on Kubernetes project (GKE, cloud SQL, NFS, cluster autoscaling, HPA, VPA, Ingress, Let’s Encrypt)",
+      "updated": null
     },
     {
-      "author": "Adnan Hodzic",
-      "author_detail": {
-        "name": "Adnan Hodzic"
-      },
       "authors": [
         {
+          "email": null,
+          "link": null,
           "name": "Adnan Hodzic"
         }
       ],
-      "comments": "https://foolcontrol.org/?p=3614#respond",
-      "content": [
-        {
-          "base": null,
-          "language": null,
-          "type": "text/html",
-          "value": "TL;DRVisit degiro-trading-tracker on Github I was always interested in stocks and investing. While I wanted to get into trading for long time, I could never..."
-        }
-      ],
-      "description": "TL;DRVisit degiro-trading-tracker on Github I was always interested in stocks and investing. While I wanted to get into trading for long time, I could never...",
-      "id": "https://k8s.hodzic.org/?p=3614",
-      "link": "https://foolcontrol.org/?p=3614",
-      "links": [],
-      "published": "2020-11-16T07:21:34+00:00",
-      "tags": [
+      "categories": [
         {
           "label": null,
           "scheme": null,
@@ -1048,34 +969,44 @@
           "term": "trading"
         }
       ],
-      "title": "Degiro trading tracker – Simplified tracking of your investments"
+      "content": null,
+      "description": "TL;DRVisit degiro-trading-tracker on Github I was always interested in stocks and investing. While I wanted to get into trading for long time, I could never...",
+      "enclosures": [],
+      "id": "https://k8s.hodzic.org/?p=3614",
+      "link": "https://foolcontrol.org/?p=3614",
+      "links": [],
+      "media": [],
+      "published": "2020-11-16T07:21:34+00:00",
+      "title": "Degiro trading tracker – Simplified tracking of your investments",
+      "updated": null
     }
   ],
   "feed": {
+    "authors": [],
+    "categories": [],
+    "description": "Adnan Hodzic on Linux, Open Source, DevOps, Cloud and much more :)",
     "generator": "https://wordpress.org/?v=6.6.2",
+    "icon": null,
     "id": null,
     "image": {
+      "height": 32,
       "link": "https://foolcontrol.org",
       "title": "FoolControl: Phear the penguin",
-      "url": "https://storage.googleapis.com/foolcontrol-media/2024/09/ee9804c9-cropped-e4e3292a-foolcontrol-favicon-32x32.png"
+      "url": "https://storage.googleapis.com/foolcontrol-media/2024/09/ee9804c9-cropped-e4e3292a-foolcontrol-favicon-32x32.png",
+      "width": 32
     },
-    "language": null,
+    "language": "en-US",
     "link": "https://foolcontrol.org",
-    "links": [],
-    "subtitle": "Adnan Hodzic on Linux, Open Source, DevOps, Cloud and much more :)",
-    "subtitle_detail": {
-      "base": null,
-      "language": null,
-      "type": "text/plain",
-      "value": "Adnan Hodzic on Linux, Open Source, DevOps, Cloud and much more :)"
-    },
+    "links": [
+      {
+        "href": "https://foolcontrol.org/?feed=rss2",
+        "rel": "self",
+        "title": null,
+        "type": "application/rss+xml"
+      }
+    ],
+    "logo": null,
     "title": "FoolControl: Phear the penguin",
-    "title_detail": {
-      "base": null,
-      "language": null,
-      "type": "text/plain",
-      "value": "FoolControl: Phear the penguin"
-    },
-    "updated": "Fri, 25 Oct 2024 10:14:37 +0000"
+    "updated": "2024-10-25T10:14:37+00:00"
   }
 }

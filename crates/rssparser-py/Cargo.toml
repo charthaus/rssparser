@@ -1,0 +1,16 @@
+[package]
+name = "rssparser-py"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+name = "_rssparser"
+crate-type = ["cdylib"]
+
+[dependencies]
+rssparser-core = { path = "../rssparser-core" }
+pyo3 = { version = "0.26", features = ["extension-module"] }
+rayon = "1"

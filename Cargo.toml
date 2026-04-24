@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members = ["crates/rssparser-core", "crates/rssparser-py"]
+
+[workspace.package]
+version = "1.0.0-alpha.0"
+edition = "2021"
+rust-version = "1.74"
+license = "MIT"
+repository = "https://github.com/kagisearch/rssparser"
+
+[workspace.dependencies]
+quick-xml = "0.36"
+
+[profile.release]
+lto = "fat"
+codegen-units = 1

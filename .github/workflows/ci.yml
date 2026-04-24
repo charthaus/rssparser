@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install maturin pytest feedparser
+      - name: Build + install rssparser
+        run: maturin develop --release
+      - name: Run Rust unit tests
+        run: cargo test --workspace --release
+      - name: Run Python tests
+        run: pytest -v
+
+  corpus:
+    name: Corpus parse (benchmark_data)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Install + build
+        run: |
+          python -m pip install --upgrade pip maturin
+          maturin develop --release
+      - name: Parse full benchmark_data/ corpus
+        run: |
+          python -c "
+          import rssparser
+          from pathlib import Path
+          files = sorted((Path('benchmark_data')).iterdir())
+          fail = []
+          for f in files:
+              try: rssparser.parse(f.read_bytes())
+              except Exception as e: fail.append((f.name, str(e)))
+          print(f'{len(files) - len(fail)}/{len(files)} parsed')
+          if fail:
+              for name, err in fail: print(f'  {name}: {err}')
+              raise SystemExit(1)
+          "

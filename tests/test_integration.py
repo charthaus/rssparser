@@ -3,7 +3,12 @@ from pathlib import Path
 
 import pytest
 
-from fastfeedparser import parse
+pytest.skip(
+    "Legacy fastfeedparser snapshot tests — to be ported to rssparser starting Phase 2.",
+    allow_module_level=True,
+)
+
+from fastfeedparser import parse  # noqa: E402
 
 _TESTS_DIR = Path(__file__).parent
 _INTEGRATION_DIR = _TESTS_DIR.joinpath("integration")

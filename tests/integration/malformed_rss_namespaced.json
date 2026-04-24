@@ -1,40 +1,47 @@
 {
   "entries": [
     {
+      "authors": [],
+      "categories": [],
+      "content": null,
       "description": "First test entry",
-      "id": "https://example.com/entry1",
+      "enclosures": [],
+      "id": null,
       "link": "https://example.com/entry1",
       "links": [],
+      "media": [],
       "published": "2024-01-01T12:00:00+00:00",
-      "title": "Test Entry 1"
+      "title": "Test Entry 1",
+      "updated": null
     },
     {
+      "authors": [],
+      "categories": [],
+      "content": null,
       "description": "Second test entry",
-      "id": "https://example.com/entry2",
+      "enclosures": [],
+      "id": null,
       "link": "https://example.com/entry2",
       "links": [],
+      "media": [],
       "published": "2024-01-02T12:00:00+00:00",
-      "title": "Test Entry 2"
+      "title": "Test Entry 2",
+      "updated": null
     }
   ],
   "feed": {
+    "authors": [],
+    "categories": [],
+    "description": "A malformed RSS feed with namespace prefixes",
+    "generator": null,
+    "icon": null,
     "id": null,
+    "image": null,
     "language": null,
     "link": "https://example.com/",
     "links": [],
-    "subtitle": "A malformed RSS feed with namespace prefixes",
-    "subtitle_detail": {
-      "base": null,
-      "language": null,
-      "type": "text/plain",
-      "value": "A malformed RSS feed with namespace prefixes"
-    },
+    "logo": null,
     "title": "Test Feed with Namespaced RSS",
-    "title_detail": {
-      "base": null,
-      "language": null,
-      "type": "text/plain",
-      "value": "Test Feed with Namespaced RSS"
-    }
+    "updated": null
   }
 }

@@ -1,23 +1,63 @@
 [build-system]
-requires = ["setuptools~=67.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["maturin>=1.5,<2.0"]
+build-backend = "maturin"
 
-[tool.ruff]
-extend-exclude = [
-    "1.py",
-    "debug_*.py",
-    "test_*.py",
-    "benchmark.py",
-    "investigate_failures.py",
-    "show_error_messages.py",
-    "check_oh4_dates.py",
-    "comprehensive_debug.py",
-    "profile_dylanharris.py",
+[project]
+name = "rssparser"
+version = "1.0.0a0"
+description = "Fast RSS/Atom/RDF/JSON feed parser, Rust-backed"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+readme = "README.md"
+authors = [{ name = "Jan K. Griffioen-Järfalk" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Rust",
 ]
 
-[tool.ty.rules]
-unresolved-import = "ignore"
+[project.urls]
+Homepage = "https://github.com/kagisearch/rssparser"
+Repository = "https://github.com/kagisearch/rssparser"
+Issues = "https://github.com/kagisearch/rssparser/issues"
+
+[tool.maturin]
+manifest-path = "crates/rssparser-py/Cargo.toml"
+module-name = "rssparser._rssparser"
+python-source = "src"
+features = ["pyo3/extension-module"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
+[tool.ruff]
+extend-exclude = ["benchmark.py"]
+
+[tool.cibuildwheel]
+build = "cp310-* cp311-* cp312-* cp313-* cp314-*"
+skip = "*-musllinux_i686 *-win32 pp*"
+build-frontend = "build"
+before-all = "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile minimal"
+environment = { PATH = "$HOME/.cargo/bin:$PATH" }
+
+[tool.cibuildwheel.linux]
+archs = ["x86_64", "aarch64"]
+before-all = """\
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile minimal && \
+source $HOME/.cargo/env && \
+rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu 2>/dev/null || true\
+"""
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64", "arm64"]
+environment = { MACOSX_DEPLOYMENT_TARGET = "11.0" }
+
+[tool.cibuildwheel.windows]
+archs = ["AMD64"]

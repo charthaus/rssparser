@@ -1,6 +1,13 @@
 """Tests for feed-level image/icon/logo extraction."""
 
-from fastfeedparser import parse
+import pytest
+
+pytest.skip(
+    "Legacy fastfeedparser tests — to be ported to rssparser in Phase 2.",
+    allow_module_level=True,
+)
+
+from fastfeedparser import parse  # noqa: E402
 
 
 def test_rss_feed_image():

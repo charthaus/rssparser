@@ -1,193 +1,126 @@
-# FastFeedParser
+# rssparser
 
-A high-performance feed parser for Python that handles RSS, Atom, and RDF. Built for speed, efficiency, and ease of use while delivering complete parsing capabilities.
+A fast Rust-backed RSS / Atom / RDF / JSON Feed parser for Python.
 
-### Why FastFeedParser?
+~140x faster than `feedparser` on the 200-feed benchmark corpus (0.22 ms/feed single-threaded, 0.05 ms/feed via batched `parse_many`). Successor to [`fastfeedparser`](https://pypi.org/project/fastfeedparser/); see **Migration** below.
 
-It's about 25x faster (check included `benchmark.py`) than popular feedparser
-library while keeping a familiar API. This speed comes from:
-
-- lxml for efficient XML parsing
-- Smart memory management  
-- Minimal dependencies
-- Focused, streamlined code
-
-Powers feed processing for [Kagi Small Web](https://github.com/kagisearch/smallweb), handling processing of thousands of feeds at scale.
-
-
-## Features
-
-- Fast parsing of RSS 2.0, Atom 1.0, and RDF/RSS 1.0 feeds
-- Robust error handling and encoding detection
-- Support for media content and enclosures
-- Automatic date parsing and standardization to UTC ISO 8601 format
-- Clean, Pythonic API similar to feedparser
-- Comprehensive handling of feed metadata
-- Support for various feed extensions (Media RSS, Dublin Core, etc.)
-
-
-## Installation
+## Install
 
 ```bash
-pip install fastfeedparser
+pip install rssparser
 ```
 
-## Quick Start
+Pre-built wheels ship for Python 3.10–3.14 on manylinux2014 x86_64 / aarch64, musllinux x86_64 / aarch64, macOS arm64 / x86_64, and Windows x86_64.
+
+## Quick start
 
 ```python
-import fastfeedparser
+import rssparser
 
-# Parse from URL
-myfeed = fastfeedparser.parse('https://example.com/feed.xml')
+# Bytes in, Feed out.
+feed = rssparser.parse(open("feed.xml", "rb").read())
 
-# Parse from string
-xml_content = '''<?xml version="1.0"?>
-<rss version="2.0">
-    <channel>
-        <title>Example Feed</title>
-        ...
-    </channel>
-</rss>'''
-myfeed = fastfeedparser.parse(xml_content)
+print(feed.title)
+for entry in feed.entries:
+    print(entry.title, entry.published, entry.link)
 
-# Access feed global information
-print(myfeed.feed.title)
-print(myfeed.feed.link)
-
-# Access feed entries
-for entry in myfeed.entries:
-    print(entry.title)
-    print(entry.link)
-    print(entry.published)
+# Full materialization as plain dict (tests, debugging, JSONB inserts).
+payload = feed.to_dict()
 ```
 
-## Run Benchmark
+## API
 
-```bash
-python benchmark.py
+```python
+rssparser.parse(data: bytes) -> rssparser.Feed
+rssparser.parse_many(blobs: list[bytes]) -> list[rssparser.Feed]
+rssparser.parse_to_json(data: bytes) -> bytes
+rssparser.parse_many_to_json(blobs: list[bytes]) -> list[bytes]
+rssparser.FeedParseError  # alias of ValueError
 ```
 
-This will run benchmark on a number of feeds with output looking like this
+- `parse(data)` — zero-copy view into the Python bytes object; parses while holding the GIL. Blazing fast single-call.
+- `parse_many(blobs)` — releases the GIL, parses the batch in parallel via Rayon, returns the list in input order. Use this when you have many feeds.
+- `parse_to_json(data)` — parses and emits JSON bytes directly, skipping Python object construction. Ideal for pipelines that pipe straight to JSONB / Kafka / disk.
+- `parse_many_to_json(blobs)` — batched JSON emit.
 
-```
-Testing https://gessfred.xyz/rss.xml
-FastFeedParser: 17 entries in 0.004s
-Feedparser: 17 entries in 0.098s
-Speedup: 26.3x
+### Feed / Entry shape
 
-Testing https://fanf.dreamwidth.org/data/rss
-FastFeedParser: 25 entries in 0.005s
-Feedparser: 25 entries in 0.087s
-Speedup: 17.9x
+```python
+feed.title         # Optional[str]
+feed.link          # Optional[str]
+feed.links         # list[{"href", "rel", "type", "title"}]
+feed.description   # Optional[str]
+feed.language      # Optional[str]
+feed.generator     # Optional[str]
+feed.updated       # Optional[str]   # UTC ISO-8601
+feed.id            # Optional[str]
+feed.icon          # Optional[str]
+feed.logo          # Optional[str]
+feed.entries       # list[Entry]
 
-Testing https://jacobwsmith.xyz/feed.xml
-FastFeedParser: 121 entries in 0.030s
-Feedparser: 121 entries in 0.166s
-Speedup: 5.5x
-
-Testing https://bernsteinbear.com/feed.xml
-FastFeedParser: 11 entries in 0.007s
-Feedparser: 11 entries in 0.339s
-Speedup: 50.1x
-```
-
-And publish a full report looking like this
-```
-Summary:
---------------------------------------------------
-Total wall-clock time: 38.70s
-Successfully tested 200/200 feeds
-
-FastFeedParser:
-  Total entries: 6600
-  Total parsing time: 0.46s
-  Average per feed: 0.002s
-  Feeds/sec: 439.0
-
-Feedparser:
-  Total entries: 6555
-  Total parsing time: 12.31s
-  Average per feed: 0.062s
-  Feeds/sec: 16.2
-
-Speedup: FastFeedParser is 27.0x faster
-
-OUTLIERS: Entry Count Mismatches (2 feeds)
---------------------------------------------------
-  https://dylanharris.org/feed-me.rss
-    FastFeedParser: 35 entries
-    Feedparser: 0 entries
-    Difference: +35
-  https://humanwhocodes.com/feeds/all.json
-    FastFeedParser: 10 entries
-    Feedparser: 0 entries
-    Difference: +10
+entry.title        # Optional[str]
+entry.link         # Optional[str]
+entry.links        # list[...]
+entry.description  # Optional[str]
+entry.content      # Optional[str]
+entry.published    # Optional[str]   # UTC ISO-8601
+entry.updated      # Optional[str]
+entry.id           # Optional[str]
+# to_dict() also returns: authors, categories, enclosures, media (see full schema in tests/integration/)
 ```
 
-## Key Features
+`feed.to_dict()` and `entry.to_dict()` return nested dicts with the full schema.
 
-### Feed Types Support
-- RSS 2.0
-- Atom 1.0
-- RDF/RSS 1.0
+### Concurrency
 
-### Content Handling
-- Automatic encoding detection
-- HTML content parsing
-- Media content extraction
-- Enclosure handling
+- `parse(bytes)` holds the GIL; Python threads calling `parse` do not run in parallel.
+- `parse_many(blobs)` releases the GIL around the whole batch and uses Rayon. Use this for real parallel throughput.
+- `Feed` / `Entry` instances are read-only and safe to share across Python threads once constructed.
 
-### Metadata Support
-- Feed title, link, and description
-- Publication dates
-- Author information
-- Categories and tags
-- Media content and thumbnails
+## Supported feed formats
 
-## API Reference
+- RSS 2.0 (including Media RSS, Dublin Core, iTunes, content:encoded, atom:link namespaces)
+- Atom 1.0 (including `<content type="xhtml">`, `<rights type="xhtml">`)
+- RDF / RSS 1.0 (with Dublin Core)
+- JSON Feed 1.0 / 1.1
 
-### Main Functions
+Format is auto-detected from the first non-whitespace byte (`<` vs `{`) and the XML root tag.
 
-- `parse(source, *, include_content=True, include_tags=True, include_media=True, include_enclosures=True)`: Parse feed from a URL/XML/JSON source, with optional field extraction toggles for faster parsing.
+## Input and errors
 
+- `parse` takes `bytes`. No URL fetching — fetch with your HTTP client of choice (`httpx`, `requests`, `aiohttp`) and pass `.content` / `.read()`.
+- Input encoding is auto-detected: BOM → UTF-8 / UTF-16; otherwise UTF-8 if valid, else the declared XML encoding via `encoding_rs`.
+- Dates are normalized to UTC ISO-8601 (`2024-09-26T00:00:00+00:00`). Unparseable dates are returned verbatim.
+- HTML-in-CDATA and XML-escaped HTML are passed through as-is — no sanitization.
+- Non-feed input (HTML, arbitrary JSON, truncated XML) raises `rssparser.FeedParseError` (subclass of `ValueError`).
 
-### Feed Object Structure
+## Benchmark
 
-The parser returns a `FastFeedParserDict` object with two main sections:
+On an Apple M3 Max (14 cores), parsing the 200-feed / 6600-entry corpus:
 
-- `feed`: Contains feed-level metadata
-- `entries`: List of feed entries
+|                          | Time    | feeds/sec |   vs feedparser |
+|--------------------------|---------|-----------|-----------------|
+| `feedparser`             | 6929 ms |        29 |               — |
+| `rssparser.parse()`      |   46 ms |      4400 |           152× |
+| `rssparser.parse_many()` |   10 ms |     20000 |           690× |
 
-Each entry contains:
-- `title`: Entry title
-- `link`: Entry URL
-- `description`: Entry description/summary
-- `published`: Publication date
-- `author`: Author information
-- `content`: Full content
-- `media_content`: Media attachments
-- `enclosures`: Attached files
+Run `python benchmark.py` for current numbers on your machine.
 
-## Requirements
+## Migration from `fastfeedparser`
 
-- Python 3.7+
-- lxml
-- python-dateutil
+`rssparser` is the successor project. The API has been redesigned to expose a Rust-owned `Feed` / `Entry` object model. If you're coming from `fastfeedparser` 0.6.x:
 
-Optional extras:
+| `fastfeedparser`                               | `rssparser`                                 |
+|------------------------------------------------|---------------------------------------------|
+| `fastfeedparser.parse(url_or_bytes)`           | `rssparser.parse(bytes)` — fetch yourself   |
+| `feed.entries[0].title` (dict + attr access)   | `entry.title` (pyclass attr only)           |
+| `entry.content[0]["value"]`                    | `entry.content` (string or None)            |
+| `entry.description` (HTML)                     | `entry.description` (same)                  |
+| `include_content=False` kwarg                  | Not needed — unused fields don't allocate.  |
+| `feed.title_detail["value"]`                   | `feed.title` (the `_detail` wrappers are gone) |
 
-- `brotli` (`pip install fastfeedparser[brotli]`) for `Content-Encoding: br`
-- `dateparser` (`pip install fastfeedparser[dateparser]`) for the slowest date parsing fallback
-- `pip install fastfeedparser[full]` for both
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+Old `fastfeedparser` 0.6.x remains on PyPI and is frozen — no further releases.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-Inspired by the [feedparser](https://github.com/kurtmckee/feedparser) project, FastFeedParser aims to provide a modern, high-performance alternative while maintaining a familiar API.
+MIT.
